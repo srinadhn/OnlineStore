@@ -14,6 +14,13 @@ public class StoreController {
 		System.out.println("testGet");
 		return "Success";
 	}
-	
+	@RequestMapping(value="/products/{searchCriteria}",method = RequestMethod.GET)
+	public String getProducts(@PathVariable(value="searchCriteria") String searchCriteria)
+	{
+		System.out.println("Search Param::"+searchCriteria);
+		List<Product> productList = StoreService.getProducts(searchCriteria);
+		Gson gson = new Gson();
+		return gson.toJson(productList);
+	}
 	
 }
