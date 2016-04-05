@@ -1,13 +1,9 @@
 package com.tradeleaves.store.domain;
-// Generated 27 Mar, 2016 3:29:16 PM by Hibernate Tools 4.3.1.Final
+// Generated 30 Mar, 2016 6:51:48 AM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -18,35 +14,40 @@ import javax.persistence.Table;
 public class OrderAddress implements java.io.Serializable {
 
 	private String orderId;
-	private Order order;
 	private String addressLine1;
 	private String addressLine2;
 	private String landMark;
 	private String city;
 	private String state;
 	private Integer postalCode;
+	private String firstName;
+	private String lastName;
+	private String emailAddress;
+	private String mobile;
 
 	public OrderAddress() {
 	}
 
-	public OrderAddress(Order order) {
-		this.order = order;
+	public OrderAddress(String orderId) {
+		this.orderId = orderId;
 	}
 
-	public OrderAddress(Order order, String addressLine1, String addressLine2, String landMark, String city,
-			String state, Integer postalCode) {
-		this.order = order;
+	public OrderAddress(String orderId, String addressLine1, String addressLine2, String landMark, String city,
+			String state, Integer postalCode, String firstName, String lastName, String emailAddress, String mobile) {
+		this.orderId = orderId;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
 		this.landMark = landMark;
 		this.city = city;
 		this.state = state;
 		this.postalCode = postalCode;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailAddress = emailAddress;
+		this.mobile = mobile;
 	}
 
-//	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "order") )
 	@Id
-	@GeneratedValue(generator = "generator")
 
 	@Column(name = "ORDER_ID", unique = true, nullable = false, length = 50)
 	public String getOrderId() {
@@ -55,16 +56,6 @@ public class OrderAddress implements java.io.Serializable {
 
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
-	}
-
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	public Order getOrder() {
-		return this.order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
 	}
 
 	@Column(name = "ADDRESS_LINE1")
@@ -119,6 +110,42 @@ public class OrderAddress implements java.io.Serializable {
 
 	public void setPostalCode(Integer postalCode) {
 		this.postalCode = postalCode;
+	}
+
+	@Column(name = "FIRST_NAME", length = 50)
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	@Column(name = "LAST_NAME", length = 45)
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	@Column(name = "EMAIL_ADDRESS", length = 50)
+	public String getEmailAddress() {
+		return this.emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	@Column(name = "MOBILE", length = 10)
+	public String getMobile() {
+		return this.mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 }

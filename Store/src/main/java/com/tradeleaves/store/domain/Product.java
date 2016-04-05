@@ -1,5 +1,5 @@
 package com.tradeleaves.store.domain;
-// Generated 27 Mar, 2016 3:29:16 PM by Hibernate Tools 4.3.1.Final
+// Generated 29 Mar, 2016 5:34:06 PM by Hibernate Tools 4.3.1.Final
 
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "product")
 public class Product implements java.io.Serializable {
+
 
 	private String productId;
 	private Category category;
@@ -32,10 +32,6 @@ public class Product implements java.io.Serializable {
 	private String status;
 	private String supplierName;
 	private String productFeatures;
-	private ProductAttribute productAttribute;
-	private ProductTerms productTerms;
-	private Set<Cart> carts = new HashSet<Cart>(0);
-	private Set<PaymentStatus> paymentStatuses = new HashSet<PaymentStatus>(0);
 
 	public Product() {
 	}
@@ -46,8 +42,7 @@ public class Product implements java.io.Serializable {
 
 	public Product(String productId, Category category, String productName, String productDescription,
 			BigDecimal productCost, String freeShippingEligible, String cashOnDeliveryEligible, String imageUrl,
-			String status, String supplierName, String productFeatures, ProductAttribute productAttribute,
-			ProductTerms productTerms, Set<Cart> carts, Set<PaymentStatus> paymentStatuses) {
+			String status, String supplierName, String productFeatures) {
 		this.productId = productId;
 		this.category = category;
 		this.productName = productName;
@@ -59,10 +54,6 @@ public class Product implements java.io.Serializable {
 		this.status = status;
 		this.supplierName = supplierName;
 		this.productFeatures = productFeatures;
-		this.productAttribute = productAttribute;
-		this.productTerms = productTerms;
-		this.carts = carts;
-		this.paymentStatuses = paymentStatuses;
 	}
 
 	@Id
@@ -167,40 +158,5 @@ public class Product implements java.io.Serializable {
 		this.productFeatures = productFeatures;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "product")
-	public ProductAttribute getProductAttribute() {
-		return this.productAttribute;
-	}
-
-	public void setProductAttribute(ProductAttribute productAttribute) {
-		this.productAttribute = productAttribute;
-	}
-
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "product")
-	public ProductTerms getProductTerms() {
-		return this.productTerms;
-	}
-
-	public void setProductTerms(ProductTerms productTerms) {
-		this.productTerms = productTerms;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<Cart> getCarts() {
-		return this.carts;
-	}
-
-	public void setCarts(Set<Cart> carts) {
-		this.carts = carts;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-	public Set<PaymentStatus> getPaymentStatuses() {
-		return this.paymentStatuses;
-	}
-
-	public void setPaymentStatuses(Set<PaymentStatus> paymentStatuses) {
-		this.paymentStatuses = paymentStatuses;
-	}
 
 }

@@ -20,27 +20,27 @@ import javax.persistence.TemporalType;
 public class ReturnRefund implements java.io.Serializable {
 
 	private String returnRefundId;
-	private Return returnObj;
-	private UserProfile userProfile;
+	private String returnId;
+	private String userId;
 	private String refundStatus;
 	private Date refundDate;
 
 	public ReturnRefund() {
 	}
 
-	public ReturnRefund(String returnRefundId, Return returnObj, UserProfile userProfile) {
-        this.returnRefundId = returnRefundId;
-        this.returnObj = returnObj;
-        this.userProfile = userProfile;
-    }
+	public ReturnRefund(String returnRefundId, String returnId, String userId) {
+		this.returnRefundId = returnRefundId;
+		this.returnId = returnId;
+		this.userId = userId;
+	}
 
-	public ReturnRefund(String returnRefundId, Return returnObj, UserProfile userProfile, String refundStatus, Date refundDate) {
-       this.returnRefundId = returnRefundId;
-       this.returnObj = returnObj;
-       this.userProfile = userProfile;
-       this.refundStatus = refundStatus;
-       this.refundDate = refundDate;
-    }
+	public ReturnRefund(String returnRefundId, String returnId, String userId, String refundStatus, Date refundDate) {
+		this.returnRefundId = returnRefundId;
+		this.returnId = returnId;
+		this.userId = userId;
+		this.refundStatus = refundStatus;
+		this.refundDate = refundDate;
+	}
 
 	@Id
 
@@ -53,24 +53,22 @@ public class ReturnRefund implements java.io.Serializable {
 		this.returnRefundId = returnRefundId;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="RETURN_ID", nullable=false)
-    public Return getReturn() {
-        return this.returnObj;
-    }
-
-	public void setReturn(Return returnObj) {
-        this.returnObj = returnObj;
-    }
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID", nullable = false)
-	public UserProfile getUserProfile() {
-		return this.userProfile;
+	@Column(name = "RETURN_ID", nullable = false, length = 50)
+	public String getReturnId() {
+		return this.returnId;
 	}
 
-	public void setUserProfile(UserProfile userProfile) {
-		this.userProfile = userProfile;
+	public void setReturnId(String returnId) {
+		this.returnId = returnId;
+	}
+
+	@Column(name = "USER_ID", nullable = false)
+	public String getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	@Column(name = "REFUND_STATUS", length = 45)

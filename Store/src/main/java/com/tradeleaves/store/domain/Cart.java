@@ -18,24 +18,24 @@ import javax.persistence.Table;
 public class Cart implements java.io.Serializable {
 
 	private String cartId;
-	private Product product;
-	private UserProfile userProfile;
+	private String userId;
+	private String productId;
 	private Integer quantity;
 	private BigDecimal productCost;
 
 	public Cart() {
 	}
 
-	public Cart(String cartId, Product product, UserProfile userProfile) {
+	public Cart(String cartId, String userId, String productId) {
 		this.cartId = cartId;
-		this.product = product;
-		this.userProfile = userProfile;
+		this.userId = userId;
+		this.productId = productId;
 	}
 
-	public Cart(String cartId, Product product, UserProfile userProfile, Integer quantity, BigDecimal productCost) {
+	public Cart(String cartId, String userId, String productId, Integer quantity, BigDecimal productCost) {
 		this.cartId = cartId;
-		this.product = product;
-		this.userProfile = userProfile;
+		this.userId = userId;
+		this.productId = productId;
 		this.quantity = quantity;
 		this.productCost = productCost;
 	}
@@ -51,24 +51,22 @@ public class Cart implements java.io.Serializable {
 		this.cartId = cartId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PRODUCT_ID", nullable = false)
-	public Product getProduct() {
-		return this.product;
+	@Column(name = "USER_ID", nullable = false)
+	public String getUserId() {
+		return this.userId;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID", nullable = false)
-	public UserProfile getUserProfile() {
-		return this.userProfile;
+	@Column(name = "PRODUCT_ID", nullable = false, length = 50)
+	public String getProductId() {
+		return this.productId;
 	}
 
-	public void setUserProfile(UserProfile userProfile) {
-		this.userProfile = userProfile;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	@Column(name = "QUANTITY")

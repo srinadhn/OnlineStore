@@ -1,5 +1,8 @@
 server:
     port: 8080
+
+liquibase:
+    context: dev
     
 spring:
     profiles:
@@ -7,21 +10,10 @@ spring:
     datasource:
         dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
         url: jdbc:mysql://localhost:3306/store
+        databaseName: store
         username: tradeleaves
         password: tradeleaves
-
-    jpa:
-        database-platform: org.hibernate.dialect.MySQL5Dialect
-        database: MYSQL
-        generate-ddl: false
-        hibernate:
-            ddl-auto: update
-            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
-        properties:
-            hibernate.cache.use_second_level_cache: false
-            hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: true
-            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
-            hibernate.cache.use_minimal_puts: true
-            hibernate.cache.hazelcast.use_lite_member: true
-            hibernate.classloading.use_current_tccl_as_parent: false
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true

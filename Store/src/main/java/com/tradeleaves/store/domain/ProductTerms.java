@@ -1,13 +1,12 @@
 package com.tradeleaves.store.domain;
-// Generated 27 Mar, 2016 3:29:16 PM by Hibernate Tools 4.3.1.Final
+// Generated 29 Mar, 2016 5:34:06 PM by Hibernate Tools 4.3.1.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -16,58 +15,47 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "product_terms")
 public class ProductTerms implements java.io.Serializable {
+	
 
-	private String productId;
-	private Product product;
+
 	private String productTermId;
+	private String productId;
 	private String termName;
 	private String termValue;
 
 	public ProductTerms() {
 	}
 
-	public ProductTerms(Product product, String productTermId) {
-		this.product = product;
+	public ProductTerms(String productTermId, String productId) {
 		this.productTermId = productTermId;
+		this.productId = productId;
 	}
 
-	public ProductTerms(Product product, String productTermId, String termName, String termValue) {
-		this.product = product;
+	public ProductTerms(String productTermId, String productId, String termName, String termValue) {
 		this.productTermId = productTermId;
+		this.productId = productId;
 		this.termName = termName;
 		this.termValue = termValue;
 	}
 
-//	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "product") )
 	@Id
-	@GeneratedValue(generator = "generator")
 
-	@Column(name = "PRODUCT_ID", unique = true, nullable = false, length = 50)
-	public String getProductId() {
-		return this.productId;
-	}
-
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
-
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	public Product getProduct() {
-		return this.product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	@Column(name = "PRODUCT_TERM_ID", nullable = false, length = 50)
+	@Column(name = "PRODUCT_TERM_ID", unique = true, nullable = false, length = 50)
 	public String getProductTermId() {
 		return this.productTermId;
 	}
 
 	public void setProductTermId(String productTermId) {
 		this.productTermId = productTermId;
+	}
+
+	@Column(name = "PRODUCT_ID", nullable = false, length = 50)
+	public String getProductId() {
+		return this.productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 
 	@Column(name = "TERM_NAME", length = 45)
@@ -87,5 +75,6 @@ public class ProductTerms implements java.io.Serializable {
 	public void setTermValue(String termValue) {
 		this.termValue = termValue;
 	}
+
 
 }

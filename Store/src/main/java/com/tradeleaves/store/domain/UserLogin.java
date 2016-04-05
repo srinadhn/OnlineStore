@@ -35,7 +35,7 @@ public class UserLogin implements java.io.Serializable {
 
 //	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "userProfile") )
 	@Id
-	@GeneratedValue(generator = "generator")
+//	@GeneratedValue(generator = "generator")
 
 	@Column(name = "USER_ID", unique = true, nullable = false)
 	public String getUserId() {

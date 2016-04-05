@@ -16,5 +16,5 @@ import com.tradeleaves.store.domain.UserProfile;
  */
 public interface ReturnRepository extends JpaRepository<Return, String>{
 	
-	List<Return> findByUserProfile(UserProfile userProfile);
+	List<Return> findByUserId(String userId);
 }

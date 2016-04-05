@@ -23,29 +23,26 @@ import javax.persistence.TemporalType;
 public class Return implements java.io.Serializable {
 
 	private String returnId;
-	private Order order;
-	private UserProfile userProfile;
+	private String orderId;
+	private String userId;
 	private String returnStatus;
 	private Date returnDate;
-	private Set<ReturnRefund> returnRefunds = new HashSet<ReturnRefund>(0);
 
 	public Return() {
 	}
 
-	public Return(String returnId, Order order, UserProfile userProfile) {
+	public Return(String returnId, String orderId, String userId) {
 		this.returnId = returnId;
-		this.order = order;
-		this.userProfile = userProfile;
+		this.orderId = orderId;
+		this.userId = userId;
 	}
 
-	public Return(String returnId, Order order, UserProfile userProfile, String returnStatus, Date returnDate,
-			Set<ReturnRefund> returnRefunds) {
+	public Return(String returnId, String orderId, String userId, String returnStatus, Date returnDate) {
 		this.returnId = returnId;
-		this.order = order;
-		this.userProfile = userProfile;
+		this.orderId = orderId;
+		this.userId = userId;
 		this.returnStatus = returnStatus;
 		this.returnDate = returnDate;
-		this.returnRefunds = returnRefunds;
 	}
 
 	@Id
@@ -59,24 +56,22 @@ public class Return implements java.io.Serializable {
 		this.returnId = returnId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ORDER_ID", nullable = false)
-	public Order getOrder() {
-		return this.order;
+	@Column(name = "ORDER_ID", nullable = false, length = 50)
+	public String getOrderId() {
+		return this.orderId;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID", nullable = false)
-	public UserProfile getUserProfile() {
-		return this.userProfile;
+	@Column(name = "USER_ID", nullable = false)
+	public String getUserId() {
+		return this.userId;
 	}
 
-	public void setUserProfile(UserProfile userProfile) {
-		this.userProfile = userProfile;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	@Column(name = "RETURN_STATUS", length = 45)
@@ -96,15 +91,6 @@ public class Return implements java.io.Serializable {
 
 	public void setReturnDate(Date returnDate) {
 		this.returnDate = returnDate;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "return")
-	public Set<ReturnRefund> getReturnRefunds() {
-		return this.returnRefunds;
-	}
-
-	public void setReturnRefunds(Set<ReturnRefund> returnRefunds) {
-		this.returnRefunds = returnRefunds;
 	}
 
 }

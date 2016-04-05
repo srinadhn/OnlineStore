@@ -1,19 +1,30 @@
 package com.tradeleaves.store.helper;
 
-import com.tradeleaves.store.domain.Order;
 import com.tradeleaves.store.domain.OrderAddress;
+import com.tradeleaves.store.domain.OrderDetails;
+import com.tradeleaves.store.domain.PaymentStatus;
 
 public class OrderAndAddress {
 	
-	Order order;
+	OrderDetails order;
 	
 	OrderAddress orderAddress;
+	
+	PaymentStatus paymentStatus;
 
-	public Order getOrder() {
+	public PaymentStatus getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(PaymentStatus paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+
+	public OrderDetails getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(OrderDetails order) {
 		this.order = order;
 	}
 

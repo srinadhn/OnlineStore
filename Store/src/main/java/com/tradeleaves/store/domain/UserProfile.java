@@ -23,13 +23,8 @@ public class UserProfile implements java.io.Serializable {
 	private String lastName;
 	private String emailId;
 	private String contactNumber;
-	private Set<Return> returns = new HashSet<Return>(0);
-	private Set<Order> orders = new HashSet<Order>(0);
 	private Set<UserAddress> userAddresses = new HashSet<UserAddress>(0);
 	private UserLogin userLogin;
-	private Set<Cart> carts = new HashSet<Cart>(0);
-	private Set<ReturnRefund> returnRefunds = new HashSet<ReturnRefund>(0);
-	private Set<PaymentStatus> paymentStatuses = new HashSet<PaymentStatus>(0);
 	private Set<OrderHistory> orderHistories = new HashSet<OrderHistory>(0);
 
 	public UserProfile() {
@@ -40,21 +35,14 @@ public class UserProfile implements java.io.Serializable {
 	}
 
 	public UserProfile(String userId, String firstName, String lastName, String emailId, String contactNumber,
-			Set<Return> returns, Set<Order> orders, Set<UserAddress> userAddresses, UserLogin userLogin,
-			Set<Cart> carts, Set<ReturnRefund> returnRefunds, Set<PaymentStatus> paymentStatuses,
-			Set<OrderHistory> orderHistories) {
+			Set<UserAddress> userAddresses, UserLogin userLogin, Set<OrderHistory> orderHistories) {
 		this.userId = userId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
 		this.contactNumber = contactNumber;
-		this.returns = returns;
-		this.orders = orders;
 		this.userAddresses = userAddresses;
 		this.userLogin = userLogin;
-		this.carts = carts;
-		this.returnRefunds = returnRefunds;
-		this.paymentStatuses = paymentStatuses;
 		this.orderHistories = orderHistories;
 	}
 
@@ -106,24 +94,6 @@ public class UserProfile implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userProfile")
-	public Set<Return> getReturns() {
-		return this.returns;
-	}
-
-	public void setReturns(Set<Return> returns) {
-		this.returns = returns;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userProfile")
-	public Set<Order> getOrders() {
-		return this.orders;
-	}
-
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userProfile")
 	public Set<UserAddress> getUserAddresses() {
 		return this.userAddresses;
 	}
@@ -139,33 +109,6 @@ public class UserProfile implements java.io.Serializable {
 
 	public void setUserLogin(UserLogin userLogin) {
 		this.userLogin = userLogin;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userProfile")
-	public Set<Cart> getCarts() {
-		return this.carts;
-	}
-
-	public void setCarts(Set<Cart> carts) {
-		this.carts = carts;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userProfile")
-	public Set<ReturnRefund> getReturnRefunds() {
-		return this.returnRefunds;
-	}
-
-	public void setReturnRefunds(Set<ReturnRefund> returnRefunds) {
-		this.returnRefunds = returnRefunds;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userProfile")
-	public Set<PaymentStatus> getPaymentStatuses() {
-		return this.paymentStatuses;
-	}
-
-	public void setPaymentStatuses(Set<PaymentStatus> paymentStatuses) {
-		this.paymentStatuses = paymentStatuses;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userProfile")

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.tradeleaves.store.domain.Product;
 import com.tradeleaves.store.domain.ProductTerms;
 
 /**
